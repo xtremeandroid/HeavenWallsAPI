@@ -98,6 +98,22 @@ app.get("/api/wallhaven/search", async (req, res) => {
   }
 });
 
+app.get("/api/wallhaven/w/:id", async (req, res) => {
+  const page = req.params.id;
+  try {
+    const apiUrl = `${server}/w/${params.id}`; // Your Wallhaven API URL
+    const response = await axios.get(apiUrl);
+
+    // Extract the relevant data from the response
+    const data = response.data; // Adjust this based on the structure of the Wallhaven API response
+
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
