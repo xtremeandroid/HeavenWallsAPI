@@ -2,8 +2,6 @@
 API For Fetching Wallpapers from WallHaven API (Solves CORS Problem)
 This is an Express API that serves as a proxy for the Wallhaven API. It provides various endpoints to fetch wallpapers and relay the responses from the Wallhaven API to the specified client application.
 
-API is Live on Vercel Try Out Here : https://heaven-walls-api.vercel.app/
-
 ## Demo
 
 You can try out the hosted version of this Express API on Vercel. It provides a live demonstration of the API endpoints and their functionality.
