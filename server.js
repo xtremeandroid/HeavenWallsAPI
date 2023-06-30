@@ -85,7 +85,7 @@ app.get("/api/wallhaven/search", async (req, res) => {
   const page = req.query.page;
   const searchTerm = req.query.search;
   try {
-    const apiUrl = `${server}/search?q=${searchTerm}`; // Your Wallhaven API URL
+    const apiUrl = `${server}/search?q=${searchTerm}&page=${page}`; // Your Wallhaven API URL
     const response = await axios.get(apiUrl);
 
     // Extract the relevant data from the response
