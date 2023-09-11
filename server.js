@@ -10,6 +10,16 @@ connectDB();
 const port = process.env.PORT;
 const app = express();
 
+// Fixes cors issue
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://heavenwalls.netlify.app/"); // Replace with your React app's URL
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 // body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
