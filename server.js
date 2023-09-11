@@ -11,13 +11,8 @@ connectDB();
 const port = process.env.PORT;
 const app = express();
 
-// Allow requests from 'https://heavenwalls.netlify.app'
-const corsOptions = {
-  origin: "https://heavenwalls.netlify.app",
-};
-
 // Fixes cors issue
-app.use(cors(corsOptions));
+app.use(cors());
 
 // body parser middleware
 app.use(express.json());
