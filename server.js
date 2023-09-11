@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 import connectDB from "./config/db.js";
@@ -10,15 +11,13 @@ connectDB();
 const port = process.env.PORT;
 const app = express();
 
+// Allow requests from 'https://heavenwalls.netlify.app'
+const corsOptions = {
+  origin: "https://heavenwalls.netlify.app",
+};
+
 // Fixes cors issue
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://heavenwalls.netlify.app"); // Replace with your React app's URL
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(cors(corsOptions));
 
 // body parser middleware
 app.use(express.json());
