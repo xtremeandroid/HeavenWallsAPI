@@ -7,6 +7,8 @@ import {
   updateUserInfo,
   logoutUser,
   deleteUserId,
+  likeUnlikeWall,
+  fetchLikedWallpapers,
 } from "../controllers/userController.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
 
@@ -18,5 +20,7 @@ router
   .get(protect, getUserInfoById)
   .put(protect, updateUserInfo)
   .delete(protect, deleteUserId);
+router.post("/like/:id", protect, likeUnlikeWall);
+router.get("/liked", protect, fetchLikedWallpapers);
 
 export default router;

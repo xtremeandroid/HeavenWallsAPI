@@ -21,6 +21,13 @@ const userSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
+    likedWallpapers: [
+      {
+        wallid: { type: String, unique: true },
+        url: String,
+        thumbnail: String,
+      },
+    ],
   },
   {
     timestamps: true,

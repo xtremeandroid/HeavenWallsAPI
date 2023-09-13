@@ -111,6 +111,64 @@ const deleteUserId = async (req, res) => {
   res.send("deleted user");
 };
 
+const likeUnlikeWall = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const wallpaperId = req.params.id;
+
+    // Check if the user exists
+    const user = await User.findById(userId);
+
+    // Find the index of the liked wallpaper in the 'likedWallpapers' array
+    const wallpaperIndex = user.likedWallpapers.findIndex(
+      (wallpaper) => wallpaper.wallid === wallpaperId
+    );
+
+    if (wallpaperIndex !== -1) {
+      // If the user has already liked the wallpaper, remove the like
+      user.likedWallpapers.splice(wallpaperIndex, 1);
+      await user.save();
+      return res.json({ message: "Wallpaper removed from liked wallpapers" });
+    } else {
+      // If the user has not liked the wallpaper, add the like
+      user.likedWallpapers.push({
+        wallid: wallpaperId,
+        url: `https://wallhaven.cc/w/${wallpaperId}`,
+        thumbnail: `https://th.wallhaven.cc/lg/${wallpaperId.substring(
+          0,
+          2
+        )}/${wallpaperId}.jpg`,
+      });
+      await user.save();
+      return res.json({ message: "Wallpaper liked successfully" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const fetchLikedWallpapers = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Get the liked wallpapers from the user object
+    const likedWallpapers = user.likedWallpapers;
+
+    res.json({ likedWallpapers });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 export {
   loginUser,
   registerUser,
@@ -118,4 +176,6 @@ export {
   getUserInfoById,
   updateUserInfo,
   deleteUserId,
+  likeUnlikeWall,
+  fetchLikedWallpapers,
 };
