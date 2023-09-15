@@ -11,9 +11,6 @@ connectDB();
 const port = process.env.PORT;
 const app = express();
 
-// Fixes cors issue
-app.use(cors());
-
 // body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
