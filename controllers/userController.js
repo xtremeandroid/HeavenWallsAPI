@@ -15,7 +15,10 @@ const loginUser = async (req, res) => {
       generateToken(res, user._id);
 
       res.status(200).json({
-        message: "Account Logged in Successfully",
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
       });
     } else {
       res.status(401).json({
