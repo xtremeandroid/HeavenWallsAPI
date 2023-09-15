@@ -2,5 +2,18 @@
   "version": 2,
   "name": "heavenwalls-server",
   "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
+  "routes": [{ "src": "/(.*)", "dest": "/server.js" }],
+  "rewrites": [],
+  "headers": [
+    {
+      "source": "/api/.*",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "http://localhost:5173"
+        }
+      ]
+    }
+  ],
+  "cleanUrls": true
 }
