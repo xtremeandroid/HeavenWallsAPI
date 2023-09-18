@@ -6,6 +6,7 @@ import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import cookieParser from "cookie-parser";
 import wallRoutes from "./routes/wallRoutes.js";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 connectDB();
 const port = process.env.PORT;
@@ -31,6 +32,10 @@ app.use("/api/wallhaven", wallRoutes);
 app.get("/", (req, res) => {
   res.send("Hello This is HeavenWalls API");
 });
+
+//custom error middleware
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server Running on Port - ${port}`);

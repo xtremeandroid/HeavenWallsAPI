@@ -26,7 +26,6 @@ const userSchema = new mongoose.Schema(
         wallid: { type: String },
         url: String,
         thumbnail: String,
-        default: [],
       },
     ],
   },

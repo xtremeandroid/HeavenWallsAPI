@@ -3,12 +3,12 @@ const router = expesss.Router();
 import {
   loginUser,
   registerUser,
-  getUserInfoById,
-  updateUserInfo,
   logoutUser,
-  deleteUserId,
   likeUnlikeWall,
   fetchLikedWallpapers,
+  updateUserProfile,
+  getUserProfile,
+  deleteUser,
 } from "../controllers/userController.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
 
@@ -16,10 +16,10 @@ router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
 router.route("/logout").post(logoutUser);
 router
-  .route("/profile/:id")
-  .get(protect, getUserInfoById)
-  .put(protect, updateUserInfo)
-  .delete(protect, deleteUserId);
+  .route("/profile")
+  .get(protect, getUserProfile)
+  .put(protect, updateUserProfile)
+  .delete(protect, deleteUser);
 router.post("/like/:id", protect, likeUnlikeWall);
 router.get("/liked", protect, fetchLikedWallpapers);
 
