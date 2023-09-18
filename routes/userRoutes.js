@@ -20,7 +20,7 @@ router
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile)
   .delete(protect, deleteUser);
-router.post("/like/:id", protect, likeUnlikeWall);
-router.get("/liked", protect, fetchLikedWallpapers);
+router.post("/like/:userId/:id", likeUnlikeWall);
+router.get("/liked/:userId", fetchLikedWallpapers);
 
 export default router;

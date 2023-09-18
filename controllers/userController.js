@@ -141,7 +141,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 
 const likeUnlikeWall = asyncHandler(async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.params.userId;
     const wallpaperId = req.params.id;
 
     // Check if the user exists
@@ -179,7 +179,7 @@ const likeUnlikeWall = asyncHandler(async (req, res) => {
 
 const fetchLikedWallpapers = asyncHandler(async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.params.userId;
 
     // Find the user by ID
     const user = await User.findById(userId);
