@@ -49,16 +49,4 @@ If you are using vercel to host this API make sure you copy the headers from ver
 node server.js
 ```
 
-#### The API will be accessible at http://localhost:3000.
-
-## License
-
-This Express API is open-source software licensed under the MIT license.
-
-## Contributing
-
-Contributions are welcome! If you find any issues or want to enhance this API, feel free to open a pull request.
-
-## Acknowledgments
-
-This Express API is built as a proxy for the Wallhaven API to facilitate easy integration with client applications.
+#### The API will be accessible at http://localhost:5000.
