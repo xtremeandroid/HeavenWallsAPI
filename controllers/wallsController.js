@@ -2,8 +2,9 @@ import axios from "axios";
 const server = "https://wallhaven.cc/api/v1";
 
 const fetchHome = async (req, res) => {
+  const page = req.query.page;
   try {
-    const apiUrl = `${server}/search?q=4k`; // Your Wallhaven API URL
+    const apiUrl = `${server}/search?q=4k?page=${page}`; // Your Wallhaven API URL
     const response = await axios.get(apiUrl);
 
     // Extract the relevant data from the response
