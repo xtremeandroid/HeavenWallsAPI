@@ -17,11 +17,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //fix cors issue
-app.use(
-  cors({
-    origin: "https://heavenwalls.netlify.app",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "*",
+//   })
+// );
 
 //cookie parse middleware
 app.use(cookieParser());
